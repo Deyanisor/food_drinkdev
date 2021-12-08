@@ -5,6 +5,7 @@ import 'package:food_drinkdev/widgets/categorias_cards.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const String id = 'HomeScreen';
   @override
   Widget build(BuildContext context) {
     final categoriasProvider = Provider.of<ApiProvider>(context);
@@ -52,44 +53,6 @@ class _CustomAppBar extends StatelessWidget {
             height: 200,
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _PosterAndTitle extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
-    return Container(
-      margin: EdgeInsets.only(top: 20),
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: FadeInImage(
-              placeholder: AssetImage("assets/no-image.jpg"),
-              image: NetworkImage('https://via.placeholder.com/200x300'),
-              height: 150,
-            ),
-          ),
-          SizedBox(width: 20),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text('Categoria',
-                  style: textTheme.headline5,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2),
-              Text('Descripción',
-                  style: textTheme.subtitle1,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1),
-            ],
-          )
-        ],
       ),
     );
   }
