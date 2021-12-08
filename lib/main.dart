@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_drinkdev/providers/Api_provider.dart';
 import 'package:food_drinkdev/screens/especilidad_screen.dart';
+import 'package:food_drinkdev/screens/login_screen.dart';
+import 'package:food_drinkdev/screens/registre_screen.dart';
 import 'package:food_drinkdev/screens/screens.dart';
+import 'package:food_drinkdev/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(AppApiProvider());
@@ -28,13 +31,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Fooo & Drink',
-      initialRoute: EspeciliadadStreen.id,
+      initialRoute: Splash.id,
       routes: {
         EspeciliadadStreen.id: (context) => EspeciliadadStreen(),
         HomeScreen.id: (context) => HomeScreen(),
-        // Splash.id: (context) => Splash(),
-        //LoginScreen.id: (context) => LoginScreen(),
-        //RegistrationScreen.id: (context) => RegistrationScreen(),
+        Splash.id: (context) => Splash(),
+        LoginScreen.id: (context) => LoginScreen(),
+        RegistrationScreen.id: (context) => RegistrationScreen(),
       },
       theme: theme.copyWith(
           brightness: Brightness.light,

@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_drinkdev/models/especialidad.dart';
 import 'package:food_drinkdev/providers/Api_provider.dart';
+import 'package:food_drinkdev/screens/login_screen.dart';
 import 'package:provider/provider.dart';
-
-import 'home_screen.dart';
 
 class EspeciliadadStreen extends StatelessWidget {
   static const String id = 'EspecilidadScreen';
@@ -85,7 +84,7 @@ class EspeciliadadStreen extends StatelessWidget {
                             child: MaterialButton(
                                 onPressed: () {
                                   //Go to login screen.
-                                  Navigator.pushNamed(context, HomeScreen.id);
+                                  Navigator.pushNamed(context, LoginScreen.id);
                                 },
                                 //Implement login functionality.
                                 minWidth: 200.0,
