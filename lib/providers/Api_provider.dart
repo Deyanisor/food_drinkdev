@@ -1,10 +1,12 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:food_drinkdev/models/categoria.dart';
+import 'package:food_drinkdev/models/now_categoria_response.dart';
 import 'package:http/http.dart' as http;
 
 class ApiProvider extends ChangeNotifier {
   String _baseUrl = 'wsc.fabricasoftware.co';
+
+  List<Categoria> onCategoria = [];
   ApiProvider() {
     print('ApiProvider incicializado');
 
@@ -16,8 +18,10 @@ class ApiProvider extends ChangeNotifier {
 
     // Await the http get response, then decode the json-formatted response.
     final response = await http.get(url);
-    final Map<String, dynamic> decodedData = json.decode(response.body);
+    final nowCategoriaResponse = NewCategoriaResponse.fromJson(response.body);
 
-    print(decodedData);
+    onCategoria = nowCategoriaResponse.datos;
+
+    notifyListeners();
   }
 }

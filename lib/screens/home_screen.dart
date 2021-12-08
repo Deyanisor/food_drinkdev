@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_drinkdev/providers/Api_provider.dart';
 import 'package:food_drinkdev/widgets/categorias_cards.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    final categoriasProvider = Provider.of<ApiProvider>(context);
+    print(categoriasProvider.onCategoria);
     return Scaffold(
         body: CustomScrollView(
       slivers: [
@@ -14,7 +16,7 @@ class HomeScreen extends StatelessWidget {
         SliverList(
             delegate: SliverChildListDelegate([
           //_PosterAndTitle(),
-          CategoriasCards(),
+          CategoriasCards(categorias: categoriasProvider.onCategoria),
         ]))
       ],
     ));
@@ -37,12 +39,18 @@ class _CustomAppBar extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           padding: EdgeInsets.only(bottom: 5),
           color: Colors.black12,
-          child: Text('Categoria', style: TextStyle(fontSize: 16)),
+          child: Text('Categoria', style: TextStyle(fontSize: 20)),
         ),
-        background: FadeInImage(
-          placeholder: AssetImage("assets/logo.png"),
-          image: NetworkImage('https://via.placeholder.com/500x300'),
-          fit: BoxFit.cover,
+        background: Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(vertical: 60),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Colors.orangeAccent, Colors.deepOrange])),
+          child: Image.asset(
+            "assets/logo.png",
+            height: 200,
+          ),
         ),
       ),
     );
