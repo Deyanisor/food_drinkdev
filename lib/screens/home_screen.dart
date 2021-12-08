@@ -35,6 +35,7 @@ class _CustomAppBar extends StatelessWidget {
         title: Container(
           width: double.infinity,
           alignment: Alignment.bottomCenter,
+          padding: EdgeInsets.only(bottom: 5),
           color: Colors.black12,
           child: Text('Categoria', style: TextStyle(fontSize: 16)),
         ),
@@ -67,6 +68,8 @@ class _PosterAndTitle extends StatelessWidget {
           ),
           SizedBox(width: 20),
           Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text('Categoria',
                   style: textTheme.headline5,
