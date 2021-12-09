@@ -1,6 +1,5 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:food_drinkdev/screens/home_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'registration_screen';
@@ -198,7 +197,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         elevation: 5.0,
         child: MaterialButton(
             onPressed: () {
-              Navigator.pushNamed(context, HomeScreen.id);
               _login();
             },
             minWidth: 200.0,

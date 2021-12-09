@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final categoriasProvider = Provider.of<ApiProvider>(context);
-    print(categoriasProvider.onCategoria);
+
     return Scaffold(
         body: CustomScrollView(
       slivers: [

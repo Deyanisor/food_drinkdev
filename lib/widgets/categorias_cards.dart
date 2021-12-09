@@ -15,7 +15,7 @@ class CategoriasCards extends StatelessWidget {
         itemCount: categorias.length,
         itemBuilder: (_, int index) {
           final categoria = categorias[index];
-          print(categoria.urlImagen);
+          //print(categoria.urlImagen);
           return _CategoriaCards(categoria);
         },
       ),

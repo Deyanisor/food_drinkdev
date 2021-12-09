@@ -1,5 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:food_drinkdev/models/IniciarSesion.dart';
+import 'package:food_drinkdev/providers/api_service.dart';
 import 'package:food_drinkdev/screens/home_screen.dart';
 import 'package:food_drinkdev/screens/registre_screen.dart';
 
@@ -11,6 +13,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  InciarSesionCliente iniciarsesioncliente = InciarSesionCliente();
+
   String _email = '';
   String _emailError = '';
   bool _emailShowError = false;
@@ -173,7 +177,6 @@ class _LoginScreenState extends State<LoginScreen> {
         child: MaterialButton(
             onPressed: () {
               _login();
-              Navigator.pushNamed(context, HomeScreen.id);
             },
             //Implement login functionality.
 
@@ -192,35 +195,49 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _login() {
+  Future<void> _login() async {
+    setState(() {
+      _passwordshow = true;
+    });
     if (!_validateFields()) {
       return;
     }
+
+    var resp = await ApiService.login(_email, _password);
+
+    if (resp.isSuccess) {
+      Navigator.pushNamed(context, HomeScreen.id);
+    } else {}
   }
 
   bool _validateFields() {
-    bool hasErros = false;
+    bool hasErrors = true;
+
     if (_email.isEmpty) {
+      hasErrors = false;
       _emailShowError = true;
-      _emailError = 'Debes ingresar tu email.';
+      _emailError = 'Debes ingresar tu email';
     } else if (!EmailValidator.validate(_email)) {
+      hasErrors = false;
       _emailShowError = true;
-      _emailError = 'Debes ingresar un email valido.';
+      _emailError = 'Debes ingresar un email valido';
     } else {
       _emailShowError = false;
     }
 
     if (_password.isEmpty) {
+      hasErrors = false;
       _passwordShowError = true;
-      _passwordError = 'Debes ingresar tu contraseña.';
-    } else if (_password.length < 6) {
+      _passwordError = 'Debes ingresar tu contraseña';
+    } else if (_password.length < 4) {
+      hasErrors = false;
       _passwordShowError = true;
-      _passwordError = 'Debes ingresar un contraseña de al menos 6 caracteres.';
+      _passwordError = 'Debes ingresar una contraseña de al menos 4 carácteres';
     } else {
       _passwordShowError = false;
     }
-    setState(() {});
 
-    return hasErros;
+    setState(() {});
+    return hasErrors;
   }
 }
